@@ -1,8 +1,8 @@
-# Samo produkcija (dist/) ide na javni git.
+# Samo produkcija (docs/) ide na javni git.
 # Izvor, build alati i zavisnosti ostaju lokalno.
 
 *
 !.gitignore
 !README.md
-!dist/
-!dist/**
+!docs/
+!docs/**
