@@ -2,28 +2,55 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Mehanika 2 — sferno kretanje</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <canvas id="gl"></canvas>
   <div id="status">Učitavanje…</div>
+  <div id="labels" aria-hidden="true"></div>
 
   <aside class="panel" id="panel">
-    <div class="panel-drag" id="panel-drag" title="Prevuci panel">⋮⋮</div>
-    <select id="task-select" aria-label="Zadatak"></select>
-    <hr />
-    <div class="section">ugaone brzine</div>
-    <label class="wp"><input type="checkbox" id="chk-wp" /> prenosna</label>
-    <label class="ws"><input type="checkbox" id="chk-ws" /> sopstvena</label>
-    <label class="w"><input type="checkbox" id="chk-w" /> ukupna</label>
-    <label class="eps" id="eps-row" style="display:none"><input type="checkbox" id="chk-eps" /> ugaono ubrzanje</label>
-    <hr />
-    <label class="trail"><input type="checkbox" id="chk-trail" /> nelinearna putanja</label>
+    <div class="panel-bar">
+      <div class="panel-drag" id="panel-drag" title="Prevuci panel">⋮⋮</div>
+      <button type="button" class="icon-btn" id="btn-collapse" title="Skupi / proširi" aria-label="Skupi panel">–</button>
+    </div>
+    <div class="panel-body" id="panel-body">
+      <select id="task-select" aria-label="Zadatak"></select>
+      <p class="task-desc" id="task-desc"></p>
+      <hr />
+      <div class="section">ugaone brzine</div>
+      <label class="wp"><input type="checkbox" id="chk-wp" /> prenosna</label>
+      <label class="ws"><input type="checkbox" id="chk-ws" /> sopstvena</label>
+      <label class="w"><input type="checkbox" id="chk-w" /> ukupna</label>
+      <hr />
+      <label class="trail"><input type="checkbox" id="chk-trail" /> nelinearna putanja</label>
+      <hr />
+      <div class="section">kontrola</div>
+      <div class="row">
+        <button type="button" id="btn-pause">Pauza</button>
+        <button type="button" id="btn-reset">Reset</button>
+      </div>
+      <label class="speed">brzina
+        <input type="range" id="speed" min="0.25" max="2" step="0.25" value="1" />
+        <span id="speed-val">1×</span>
+      </label>
+      <hr />
+      <div class="section">pogled</div>
+      <div class="row views">
+        <button type="button" data-view="default">default</button>
+        <button type="button" data-view="yz">YZ</button>
+        <button type="button" data-view="iso">izo</button>
+      </div>
+      <button type="button" class="wide" id="btn-record">Snimi WebM</button>
+    </div>
   </aside>
 
-  <div id="help">1/2/3/4 ili meni &nbsp; SPACE pauza &nbsp; R reset &nbsp; mis/prst: orbit &nbsp; točak/pinch: zoom &nbsp; panel: prevuci</div>
+  <div id="help">
+    <span class="help-full">1/2/3/4 · SPACE pauza · R reset · mis/prst orbit · točak/pinch zoom · 2× tap kamera · panel prevuci</span>
+    <span class="help-short">pinch zoom · 2× tap kamera · panel ⋮⋮</span>
+  </div>
 
   <script src="app.min.js"></script>
 </body>

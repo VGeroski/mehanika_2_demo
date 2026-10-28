@@ -1,0 +1,49 @@
+# Rebuilds docs/ from source and commits the result.
+# Requires source files in the repo (js/, package.json, …).
+# For a docs-only public repo, run `npm run build` locally then push docs/.
+
+name: Build docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master, main]
+    paths:
+      - 'js/**'
+      - 'css/**'
+      - 'shaders/**'
+      - 'index.html'
+      - 'build.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Check source present
+        id: src
+        run: |
+          if [ -f package.json ] && [ -f build.mjs ]; then
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "No source build files — skip (docs-only repo)."
+          fi
+      - if: steps.src.outputs.ok == 'true'
+        run: npm ci
+      - if: steps.src.outputs.ok == 'true'
+        run: npm run build
+      - if: steps.src.outputs.ok == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: rebuild docs'
+          file_pattern: docs/

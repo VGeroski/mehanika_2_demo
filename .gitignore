@@ -1,8 +1,11 @@
-# Samo produkcija (docs/) ide na javni git.
-# Izvor, build alati i zavisnosti ostaju lokalno.
+# Javni git: produkcija + workflow. Izvor lokalno / privatno.
+# Za CI auto-build dodaj i js/, package.json, … na isti repo.
 
 *
 !.gitignore
 !README.md
 !docs/
 !docs/**
+!.github/
+!.github/workflows/
+!.github/workflows/**
