@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mehanika 2 — sferno kretanje</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <div id="status">Učitavanje…</div>
+
+  <aside class="panel" id="panel">
+    <select id="task-select" aria-label="Zadatak"></select>
+    <hr />
+    <div class="section">ugaone brzine</div>
+    <label class="wp"><input type="checkbox" id="chk-wp" /> prenosna</label>
+    <label class="ws"><input type="checkbox" id="chk-ws" /> sopstvena</label>
+    <label class="w"><input type="checkbox" id="chk-w" /> ukupna</label>
+    <label class="eps" id="eps-row" style="display:none"><input type="checkbox" id="chk-eps" /> ugaono ubrzanje</label>
+    <hr />
+    <label class="trail"><input type="checkbox" id="chk-trail" /> nelinearna putanja</label>
+  </aside>
+
+  <div id="help">1/2/3/4 ili meni &nbsp; SPACE pauza &nbsp; R reset &nbsp; mis: orbit &nbsp; točak: zoom</div>
+
+  <script src="app.min.js"></script>
+</body>
+</html>
